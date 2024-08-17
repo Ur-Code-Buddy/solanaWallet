@@ -169,7 +169,7 @@ const SolanaWallet: React.FC = () => {
                 Clear Data
             </Button>
 
-            <VStack spacing={6} align="center" p={6} maxW="md" mx="auto">
+            <VStack spacing={6} align="center" p={6} maxW="md" mx="auto" mt={12} mb={12}>
                 <Heading as="h1" size="xl" mb={6} textAlign="center" color="teal.300">
                     Create Solana Wallets
                 </Heading>
@@ -216,7 +216,7 @@ const SolanaWallet: React.FC = () => {
                     )}
 
                     {wallets.length > 0 && (
-                        <Box>
+                        <Box mb={8}>
                             {wallets.map((wallet, index) => (
                                 <Box key={index} p={4} mb={4} borderWidth={1} borderRadius="md" bg="gray.800" shadow="sm">
                                     <WalletComponent

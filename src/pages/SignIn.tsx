@@ -134,7 +134,7 @@ const SolanaVault: React.FC = () => {
                                             display="inline-block"
                                         >
                                             <Text 
-                                                fontSize="lg" 
+                                                fontSize={{ base: "md", sm: "lg" }} // Smaller text on mobile
                                                 fontWeight="bold" 
                                                 color="white" 
                                                 textAlign="center"
@@ -183,7 +183,7 @@ const SolanaVault: React.FC = () => {
                         </Text>
                         <Text fontSize="sm" color="blue.600" mt={2}>
                             {mnemonic 
-                                ? "If you already have a previous mnemonic, you can import it in next page. If you don't have a mnemonic, we'll generate one for you right here."
+                                ? "If you already have a previous mnemonic, you can import it in the next page. If you don't have a mnemonic, we'll generate one for you right here."
                                 : "SolanaVault is your gateway to securely manage and interact with your Solana-based assets. Generate your mnemonic, create wallets, and start transacting on the Solana blockchain with ease."
                             }
                         </Text>
