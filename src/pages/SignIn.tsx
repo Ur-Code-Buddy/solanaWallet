@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Text, VStack, useToast, Grid, GridItem, IconButton, Tooltip } from '@chakra-ui/react';
+import { Box, Button, Text, VStack, useToast, Grid, GridItem, IconButton} from '@chakra-ui/react';
 import { CopyIcon, InfoIcon } from '@chakra-ui/icons';
 import * as bip39 from 'bip39';
 import { useNavigate } from 'react-router-dom';
