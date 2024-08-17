@@ -144,40 +144,47 @@ const SolanaWallet: React.FC = () => {
             position="relative" // Positioning context for the buttons
         >
             <Button
-                onClick={() => navigate('/')}
-                colorScheme="blue"
-                variant="solid"
-                position="absolute"
-                top={4}
-                left={4}
-                zIndex={1}
-            >
-                Back to Homepage
-            </Button>
+    onClick={() => navigate('/')}
+    colorScheme="blue"
+    variant="solid"
+    position="absolute"
+    top={{ base: 4, md: 4 }}
+    left={{ base: 4, md: 4 }}
+    zIndex={1}
+    fontSize={{ base: 'sm', md: 'md' }} // Smaller font size on mobile
+    px={{ base: 2, md: 4 }} // Adjust padding for smaller screens
+>
+    Back to Homepage
+</Button>
 
-            <Button
-                onClick={() => navigate('/send-sol')}
-                colorScheme="blue"
-                variant="solid"
-                position="absolute"
-                top={4}
-                right={4}
-                zIndex={1}
-            >
-                Want to send SOL? Click here
-            </Button>
+<Button
+    onClick={() => navigate('/send-sol')}
+    colorScheme="blue"
+    variant="solid"
+    position="absolute"
+    top={{ base: 4, md: 4 }}
+    right={{ base: 4, md: 4 }}
+    zIndex={1}
+    fontSize={{ base: 'sm', md: 'md' }} // Smaller font size on mobile
+    px={{ base: 2, md: 4 }} // Adjust padding for smaller screens
+>
+    Want to send SOL? Click here
+</Button>
 
-            <Button
-                onClick={handleClearData}
-                colorScheme="red"
-                variant="solid"
-                position="absolute"
-                bottom={4}
-                right={4}
-                zIndex={1}
-            >
-                Clear Data
-            </Button>
+<Button
+    onClick={handleClearData}
+    colorScheme="red"
+    variant="solid"
+    position="absolute"
+    bottom={{ base: 4, md: 4 }}
+    right={{ base: 4, md: 4 }}
+    zIndex={1}
+    fontSize={{ base: 'sm', md: 'md' }} // Smaller font size on mobile
+    px={{ base: 2, md: 4 }} // Adjust padding for smaller screens
+>
+    Clear Data
+</Button>
+
 
             <VStack spacing={6} align="center" p={6} maxW="md" mx="auto">
                 <Heading as="h1" size="xl" mb={6} textAlign="center" color="white">
