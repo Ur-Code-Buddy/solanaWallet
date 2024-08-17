@@ -1,8 +1,18 @@
 {
     "redirects": [
       {
+        "source": "/send-sol",
+        "destination": "/send-sol",
+        "permanent": false
+      },
+      {
+        "source": "/wallets",
+        "destination": "/wallets",
+        "permanent": false
+      },
+      {
         "source": "/(.*)",
-        "destination": "/",
+        "destination": "/index.html",
         "permanent": false
       }
     ]
