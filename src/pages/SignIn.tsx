@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import {
-    Box,
-    Button,
-    Text,
-    VStack,
-    useToast,
-    Grid,
-    GridItem,
-    HStack
-} from '@chakra-ui/react';
+import { Box, Button, Text, VStack, useToast, Grid, GridItem } from '@chakra-ui/react';
 import { CopyIcon } from '@chakra-ui/icons';
 import * as bip39 from 'bip39';
 import { useNavigate } from 'react-router-dom';
@@ -69,7 +60,7 @@ const SignIn: React.FC = () => {
             display="flex"
             alignItems="center"
             justifyContent="center"
-            position="relative"
+            position="relative" // Positioning context for the button
         >
             <Button
                 onClick={() => navigate('/send-sol')}
@@ -115,8 +106,8 @@ const SignIn: React.FC = () => {
                                 Mnemonic
                             </Text>
                             <Grid
-                                templateColumns="repeat(4, 1fr)"
-                                gap={2} // Reduced gap between words
+                                templateColumns="repeat(4, 1fr)" // 4 columns per row
+                                gap={4}
                                 p={2}
                                 borderWidth={1}
                                 borderRadius="md"
@@ -126,16 +117,16 @@ const SignIn: React.FC = () => {
                                 {formatMnemonic(mnemonic).map((word, index) => (
                                     <GridItem key={index}>
                                         <Box
-                                            p={1}
+                                            p={2}
                                             bg="yellow.100" // Light yellow background
                                             borderRadius="md"
-                                            display="inline-block"
+                                            display="inline-block" // To keep the box size adjusted to its content
                                         >
                                             <Text 
-                                                fontSize="md" // Slightly smaller font size
+                                                fontSize="lg" 
                                                 fontWeight="bold" 
                                                 color="black" 
-                                                textAlign="center"
+                                                textAlign="center" // Center the text within the box
                                             >
                                                 {word}
                                             </Text>

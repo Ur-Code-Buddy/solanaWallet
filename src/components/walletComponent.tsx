@@ -27,13 +27,25 @@ const WalletComponent: React.FC<WalletComponentProps> = ({ name, publicKey, secr
         fetchBalance();
     }, [publicKey]);
 
-    const handleCopy = (text: string) => {
-        toast({
-            title: `Copied ${text === publicKey ? 'wallet address' : 'private key'}`,
-            status: "success",
-            duration: 2000,
-            isClosable: true,
-        });
+    const handleCopy = async (text: string) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            toast({
+                title: `Copied ${text === publicKey ? 'wallet address' : 'private key'}`,
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+            });
+        } catch (err) {
+            console.error('Failed to copy text:', err);
+            toast({
+                title: "Failed to copy",
+                description: "There was an error copying the text.",
+                status: "error",
+                duration: 2000,
+                isClosable: true,
+            });
+        }
     };
 
     return (
@@ -79,13 +91,15 @@ const WalletComponent: React.FC<WalletComponentProps> = ({ name, publicKey, secr
                                 {showPrivateKey ? <ViewOffIcon /> : <ViewIcon />}
                             </Button>
                         </Tooltip>
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleCopy(secretKey)}
-                        >
-                            <CopyIcon />
-                        </Button>
+                        <Tooltip label="Copy private key" aria-label="Copy private key">
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleCopy(secretKey)}
+                            >
+                                <CopyIcon />
+                            </Button>
+                        </Tooltip>
                     </HStack>
                 </Box>
                 <Box mb={2}>
