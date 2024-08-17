@@ -25,6 +25,10 @@ const WalletComponent: React.FC<WalletComponentProps> = ({ name, publicKey, secr
         };
 
         fetchBalance();
+
+        const intervalId = setInterval(fetchBalance, 1); // Refresh balance every 2 seconds
+
+        return () => clearInterval(intervalId); // Clear interval on component unmount
     }, [publicKey]);
 
     const handleCopy = async (text: string) => {
