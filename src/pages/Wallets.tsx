@@ -112,6 +112,20 @@ const SolanaWallet: React.FC = () => {
         }
     };
 
+    const handleClearData = () => {
+        localStorage.removeItem('seedPhrase');
+        localStorage.removeItem('wallets');
+        localStorage.removeItem('walletCount');
+
+        setMnemonic('');
+        setWallets([]);
+        setCurrentIndex(0);
+        setWalletName('');
+        setError(null);
+
+        navigate('/');
+    };
+
     return (
         <Box
             minH="100vh"
@@ -146,6 +160,18 @@ const SolanaWallet: React.FC = () => {
                 zIndex={1}
             >
                 Want to send SOL? Click here
+            </Button>
+
+            <Button
+                onClick={handleClearData}
+                colorScheme="red"
+                variant="solid"
+                position="absolute"
+                bottom={4}
+                right={4}
+                zIndex={1}
+            >
+                Clear Data
             </Button>
 
             <VStack spacing={6} align="center" p={6} maxW="md" mx="auto">
