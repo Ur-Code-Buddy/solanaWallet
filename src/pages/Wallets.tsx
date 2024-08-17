@@ -11,6 +11,7 @@ import {
     useToast,
 } from '@chakra-ui/react';
 import { mnemonicToSeed } from 'bip39';
+import bs58 from 'bs58';
 import { derivePath } from 'ed25519-hd-key';
 import { Keypair } from '@solana/web3.js';
 import nacl from 'tweetnacl';
@@ -60,38 +61,41 @@ const SolanaWallet: React.FC = () => {
                 setError('Wallet name is required');
                 return;
             }
-
+    
             // Convert mnemonic to seed
             const seed = await mnemonicToSeed(mnemonic);
-
+    
             // Define the derivation path
             const path = `m/44'/501'/${currentIndex}'/0'`;
-
+    
             // Derive the keypair from the seed and path
             const { key } = derivePath(path, seed.toString('hex'));
-
+    
             // Generate a keypair using the derived key
             const keypair = nacl.sign.keyPair.fromSeed(new Uint8Array(key));
-
+    
             // Create the Solana Keypair
             const solanaKeypair = Keypair.fromSecretKey(keypair.secretKey);
-
+    
+            // Encode the secret key in Base58
+            const base58SecretKey = bs58.encode(solanaKeypair.secretKey);
+    
             // Update state and localStorage
             const newWallet = {
                 name: walletName,
                 publicKey: solanaKeypair.publicKey.toBase58(),
-                secretKey: Buffer.from(keypair.secretKey).toString('hex')
+                secretKey: base58SecretKey
             };
-
+    
             const updatedWallets = [...wallets, newWallet];
             setCurrentIndex(currentIndex + 1);
             setWallets(updatedWallets);
             setWalletName('');
             setError(null);
-
+    
             localStorage.setItem('wallets', JSON.stringify(updatedWallets));
             localStorage.setItem('walletCount', (currentIndex + 1).toString());
-
+    
             toast({
                 title: "Wallet added",
                 description: "Your wallet has been successfully added.",
@@ -111,6 +115,7 @@ const SolanaWallet: React.FC = () => {
             });
         }
     };
+    
 
     const handleClearData = () => {
         localStorage.removeItem('seedPhrase');
