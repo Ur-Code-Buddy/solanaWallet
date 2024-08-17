@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Button, Text, VStack, useToast, Grid, GridItem } from '@chakra-ui/react';
-import { CopyIcon } from '@chakra-ui/icons';
+import { Box, Button, Text, VStack, useToast, Grid, GridItem, IconButton, Tooltip } from '@chakra-ui/react';
+import { CopyIcon, InfoIcon } from '@chakra-ui/icons';
 import * as bip39 from 'bip39';
 import { useNavigate } from 'react-router-dom';
 
-const SignIn: React.FC = () => {
+const SolanaVault: React.FC = () => {
     const [mnemonic, setMnemonic] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const toast = useToast();
@@ -45,7 +45,6 @@ const SignIn: React.FC = () => {
         }
     };
 
-    // Function to format mnemonic into an array of words
     const formatMnemonic = (mnemonic: string) => {
         return mnemonic.split(' ');
     };
@@ -53,18 +52,18 @@ const SignIn: React.FC = () => {
     return (
         <Box
             minH="100vh"
-            bgImage="url('https://images.unsplash.com/photo-1639815188546-c43c240ff4df?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+            bgImage="url('https://images.unsplash.com/photo-1646401742573-18430f36e7c3?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
             bgSize="cover"
             bgPosition="center"
             p={6}
             display="flex"
             alignItems="center"
             justifyContent="center"
-            position="relative" // Positioning context for the button
+            position="relative"
         >
             <Button
                 onClick={() => navigate('/send-sol')}
-                colorScheme="blue"
+                colorScheme="teal"
                 variant="solid"
                 position="absolute"
                 top={4}
@@ -74,59 +73,71 @@ const SignIn: React.FC = () => {
                 Need to transfer? Click here
             </Button>
 
+            <IconButton
+                aria-label="Info about crypto wallets"
+                icon={<InfoIcon />}
+                colorScheme="teal"
+                position="absolute"
+                top={4}
+                left={4}
+                zIndex={1}
+                onClick={() => window.open('https://crypto.com/university/crypto-wallets', '_blank')}
+                variant="solid"
+            />
+
             <Box
                 p={6}
                 maxW="lg"
                 borderWidth={1}
                 borderRadius="md"
                 shadow="md"
-                bg="whiteAlpha.900"
+                bg="gray.800"
             >
-                <Text fontSize="2xl" fontWeight="semibold" textAlign="center" mb={4} color="gray.800">
-                    Create New Wallet
+                <Text fontSize="2xl" fontWeight="semibold" textAlign="center" mb={4} color="teal.300">
+                    Welcome to SolanaVault
                 </Text>
                 <VStack spacing={4} align="stretch" mb={6}>
-                    <Button
-                        onClick={generateMnemonic}
-                        colorScheme="blue"
-                        variant="solid"
-                    >
-                        Generate Mnemonic
-                    </Button>
-
-                    {mnemonic && (
+                    {!mnemonic ? (
+                        <Button
+                            onClick={generateMnemonic}
+                            colorScheme="teal"
+                            variant="solid"
+                        >
+                            Generate Mnemonic
+                        </Button>
+                    ) : (
                         <Box
                             p={4}
                             borderWidth={1}
                             borderRadius="md"
-                            bg="gray.100"
+                            bg="gray.700"
                             shadow="md"
                         >
-                            <Text fontSize="xl" fontWeight="semibold" mb={4} color="gray.700">
+                            <Text fontSize="xl" fontWeight="semibold" mb={4} color="teal.300">
                                 Mnemonic
                             </Text>
                             <Grid
-                                templateColumns="repeat(4, 1fr)" // 4 columns per row
+                                templateColumns="repeat(4, 1fr)"
                                 gap={4}
                                 p={2}
                                 borderWidth={1}
                                 borderRadius="md"
-                                bg="white"
+                                bg="gray.800"
                                 overflow="auto"
                             >
                                 {formatMnemonic(mnemonic).map((word, index) => (
                                     <GridItem key={index}>
                                         <Box
                                             p={2}
-                                            bg="yellow.100" // Light yellow background
+                                            bg="teal.500"
                                             borderRadius="md"
-                                            display="inline-block" // To keep the box size adjusted to its content
+                                            display="inline-block"
                                         >
                                             <Text 
                                                 fontSize="lg" 
                                                 fontWeight="bold" 
-                                                color="black" 
-                                                textAlign="center" // Center the text within the box
+                                                color="white" 
+                                                textAlign="center"
                                             >
                                                 {word}
                                             </Text>
@@ -137,7 +148,7 @@ const SignIn: React.FC = () => {
                             <VStack spacing={2} mt={4} align="stretch">
                                 <Button
                                     onClick={handleCopyMnemonic}
-                                    colorScheme="green"
+                                    colorScheme="teal"
                                     variant="solid"
                                     leftIcon={<CopyIcon />}
                                 >
@@ -145,7 +156,7 @@ const SignIn: React.FC = () => {
                                 </Button>
                                 <Button
                                     onClick={handleNext}
-                                    colorScheme="blue"
+                                    colorScheme="teal"
                                     variant="solid"
                                 >
                                     Next
@@ -157,10 +168,30 @@ const SignIn: React.FC = () => {
                     {error && (
                         <Text color="red.500" textAlign="center">{error}</Text>
                     )}
+
+                    {/* Information Box */}
+                    <Box
+                        p={4}
+                        mt={6}
+                        borderWidth={1}
+                        borderRadius="md"
+                        bg="blue.50"
+                        shadow="md"
+                    >
+                        <Text fontSize="md" fontWeight="semibold" color="blue.700">
+                            About SolanaVault
+                        </Text>
+                        <Text fontSize="sm" color="blue.600" mt={2}>
+                            {mnemonic 
+                                ? "If you already have a previous mnemonic, you can import it in next page. If you don't have a mnemonic, we'll generate one for you right here."
+                                : "SolanaVault is your gateway to securely manage and interact with your Solana-based assets. Generate your mnemonic, create wallets, and start transacting on the Solana blockchain with ease."
+                            }
+                        </Text>
+                    </Box>
                 </VStack>
             </Box>
         </Box>
     );
 };
 
-export default SignIn;
+export default SolanaVault;
