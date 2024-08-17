@@ -9,6 +9,12 @@ import {
     Heading,
     Text,
     useToast,
+    AlertDialog,
+    AlertDialogBody,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogContent,
+    AlertDialogOverlay,
 } from '@chakra-ui/react';
 import { mnemonicToSeed } from 'bip39';
 import bs58 from 'bs58';
@@ -24,6 +30,8 @@ const SolanaWallet: React.FC = () => {
     const [walletName, setWalletName] = useState<string>('');
     const [wallets, setWallets] = useState<Array<{ name: string; publicKey: string; secretKey: string }>>([]);
     const [error, setError] = useState<string | null>(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const cancelRef = React.useRef<HTMLButtonElement>(null);
     const toast = useToast();
     const navigate = useNavigate(); 
 
@@ -103,6 +111,8 @@ const SolanaWallet: React.FC = () => {
         }
     };
 
+    const handleOpenConfirmDialog = () => setIsOpen(true);
+
     const handleClearData = () => {
         localStorage.removeItem('seedPhrase');
         localStorage.removeItem('wallets');
@@ -156,7 +166,7 @@ const SolanaWallet: React.FC = () => {
             </Button>
 
             <Button
-                onClick={handleClearData}
+                onClick={handleOpenConfirmDialog}
                 colorScheme="red"
                 variant="solid"
                 position="absolute"
@@ -230,6 +240,33 @@ const SolanaWallet: React.FC = () => {
                     )}
                 </Box>
             </VStack>
+
+            <AlertDialog
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                leastDestructiveRef={cancelRef}
+            >
+                <AlertDialogOverlay>
+                    <AlertDialogContent>
+                        <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                            Confirm Clear Data
+                        </AlertDialogHeader>
+
+                        <AlertDialogBody>
+                            This will clear all your wallets and mnemonic. Proceed only if you are sure of what you are doing.
+                        </AlertDialogBody>
+
+                        <AlertDialogFooter>
+                            <Button ref={cancelRef} onClick={() => setIsOpen(false)}>
+                                Cancel
+                            </Button>
+                            <Button colorScheme="red" onClick={handleClearData} ml={3}>
+                                Clear Data
+                            </Button>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialogOverlay>
+            </AlertDialog>
         </Box>
     );
 };
