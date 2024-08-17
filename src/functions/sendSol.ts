@@ -19,7 +19,7 @@ export async function sendSol(senderPrivateKeyStr: string, receiverPublicKeyStr:
             SystemProgram.transfer({
                 fromPubkey: senderKeypair.publicKey,
                 toPubkey: receiverPublicKey,
-                lamports: amount * 1000000, // Adjusted lamports conversion
+                lamports: amount * 1000000000, // Adjusted lamports conversion
             })
         );
 
