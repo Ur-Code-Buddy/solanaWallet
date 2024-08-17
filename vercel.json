@@ -1,20 +1,12 @@
 {
-    "redirects": [
+    "builds": [
       {
-        "source": "/send-sol",
-        "destination": "/send-sol",
-        "permanent": false
-      },
-      {
-        "source": "/wallets",
-        "destination": "/wallets",
-        "permanent": false
-      },
-      {
-        "source": "/(.*)",
-        "destination": "/index.html",
-        "permanent": false
+        "src": "src/**/*.tsx",
+        "use": "@vercel/node"
       }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "/" }
     ]
   }
   
