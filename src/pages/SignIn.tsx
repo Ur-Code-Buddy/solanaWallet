@@ -45,14 +45,9 @@ const SignIn: React.FC = () => {
         }
     };
 
-    // Function to format mnemonic into a grid with 4 words per row
+    // Function to format mnemonic into an array of words
     const formatMnemonic = (mnemonic: string) => {
-        const words = mnemonic.split(' ');
-        const rows = [];
-        for (let i = 0; i < words.length; i += 4) {
-            rows.push(words.slice(i, i + 4).join(' '));
-        }
-        return rows;
+        return mnemonic.split(' ');
     };
 
     return (
@@ -111,18 +106,31 @@ const SignIn: React.FC = () => {
                                 Mnemonic
                             </Text>
                             <Grid
-                                templateColumns="repeat(4, 1fr)"
-                                gap={2}
+                                templateColumns="repeat(4, 1fr)" // 4 columns per row
+                                gap={4}
                                 p={2}
                                 borderWidth={1}
                                 borderRadius="md"
                                 bg="white"
                                 overflow="auto"
-                                maxH="300px"
                             >
-                                {formatMnemonic(mnemonic).map((row, index) => (
-                                    <GridItem key={index} colSpan={4}>
-                                        <Text fontSize="lg" wordBreak="break-word">{row}</Text>
+                                {formatMnemonic(mnemonic).map((word, index) => (
+                                    <GridItem key={index}>
+                                        <Box
+                                            p={2}
+                                            bg="yellow.100" // Light yellow background
+                                            borderRadius="md"
+                                            display="inline-block" // To keep the box size adjusted to its content
+                                        >
+                                            <Text 
+                                                fontSize="lg" 
+                                                fontWeight="bold" 
+                                                color="black" 
+                                                textAlign="center" // Center the text within the box
+                                            >
+                                                {word}
+                                            </Text>
+                                        </Box>
                                     </GridItem>
                                 ))}
                             </Grid>
