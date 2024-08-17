@@ -94,24 +94,24 @@ const WalletComponent: React.FC<WalletComponentProps> = ({ name, publicKey, secr
 
     return (
         <Box
-            p={4}
+            p={{ base: 2, md: 4 }}
             mb={4}
             borderWidth={1}
             borderRadius="md"
             bg="gray.800" // Dark background
             color="whiteAlpha.900" // Light text color
             shadow="md"
-            maxW="sm"
+            maxW={{ base: "xs", md: "sm" }} // Responsive width
             overflow="hidden"
         >
-            <Text fontSize="lg" fontWeight="bold" mb={2}>
+            <Text fontSize={{ base: "md", md: "lg" }} fontWeight="bold" mb={2}>
                 Wallet: {name}
             </Text>
-            <VStack spacing={4} align="stretch">
+            <VStack spacing={{ base: 2, md: 4 }} align="stretch">
                 <Box>
-                    <Text fontWeight="semibold">Public Key:</Text>
+                    <Text fontSize={{ base: "sm", md: "md" }} fontWeight="semibold">Public Key:</Text>
                     <HStack spacing={2} align="center">
-                        <Text isTruncated maxW="full">{publicKey}</Text>
+                        <Text fontSize={{ base: "xs", md: "sm" }} isTruncated maxW="full">{publicKey}</Text>
                         <Tooltip label="Copy public key" aria-label="Copy public key">
                             <Button
                                 variant="ghost"
@@ -119,7 +119,7 @@ const WalletComponent: React.FC<WalletComponentProps> = ({ name, publicKey, secr
                                 colorScheme="whiteAlpha"
                                 onClick={() => handleCopy(publicKey)}
                             >
-                                <CopyIcon boxSize={5} />
+                                <CopyIcon boxSize={4} />
                             </Button>
                         </Tooltip>
                         <Tooltip label="Open Solana faucet" aria-label="Solana faucet">
@@ -129,15 +129,15 @@ const WalletComponent: React.FC<WalletComponentProps> = ({ name, publicKey, secr
                                 colorScheme="whiteAlpha"
                                 onClick={handleFaucetClick}
                             >
-                                <ExternalLinkIcon boxSize={5} />
+                                <ExternalLinkIcon boxSize={4} />
                             </Button>
                         </Tooltip>
                     </HStack>
                 </Box>
                 <Box>
-                    <Text fontWeight="semibold">Private Key:</Text>
+                    <Text fontSize={{ base: "sm", md: "md" }} fontWeight="semibold">Private Key:</Text>
                     <HStack spacing={2} align="center">
-                        <Text>{showPrivateKey ? secretKey : '***'}</Text>
+                        <Text fontSize={{ base: "xs", md: "sm" }}>{showPrivateKey ? secretKey : '***'}</Text>
                         <Tooltip label={showPrivateKey ? "Hide private key" : "Show private key"} aria-label="Show/Hide private key">
                             <Button
                                 variant="ghost"
@@ -145,7 +145,7 @@ const WalletComponent: React.FC<WalletComponentProps> = ({ name, publicKey, secr
                                 colorScheme="whiteAlpha"
                                 onClick={() => setShowPrivateKey(!showPrivateKey)}
                             >
-                                {showPrivateKey ? <ViewOffIcon boxSize={5} /> : <ViewIcon boxSize={5} />}
+                                {showPrivateKey ? <ViewOffIcon boxSize={4} /> : <ViewIcon boxSize={4} />}
                             </Button>
                         </Tooltip>
                         <Tooltip label="Copy private key" aria-label="Copy private key">
@@ -155,23 +155,25 @@ const WalletComponent: React.FC<WalletComponentProps> = ({ name, publicKey, secr
                                 colorScheme="whiteAlpha"
                                 onClick={() => handleCopy(secretKey)}
                             >
-                                <CopyIcon boxSize={5} />
+                                <CopyIcon boxSize={4} />
                             </Button>
                         </Tooltip>
                     </HStack>
                 </Box>
                 <Box>
-                    <Text fontWeight="semibold">Balance:</Text>
-                    <Text>{balance !== null ? `${balance} SOL` : 'Fetching...'}</Text>
+                    <Text fontSize={{ base: "sm", md: "md" }} fontWeight="semibold">Balance:</Text>
+                    <Text fontSize={{ base: "xs", md: "sm" }}>{balance !== null ? `${balance} SOL` : 'Fetching...'}</Text>
                 </Box>
-                <HStack spacing={4} mt={4}>
+                <HStack spacing={{ base: 2, md: 4 }} mt={4}>
                     <Button
+                        fontSize={{ base: "sm", md: "md" }}
                         colorScheme="blue"
                         onClick={handleSend}
                     >
                         Send
                     </Button>
                     <Button
+                        fontSize={{ base: "sm", md: "md" }}
                         colorScheme="green"
                         onClick={handleReceive}
                     >

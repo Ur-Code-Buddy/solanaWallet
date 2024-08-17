@@ -132,13 +132,13 @@ const SolanaWallet: React.FC = () => {
                 colorScheme="teal"
                 variant="solid"
                 position="absolute"
-                top={{ base: 4, md: 4 }}
-                left={{ base: 4, md: 4 }}
+                top={4}
+                left={4}
                 zIndex={1}
-                fontSize={{ base: 'sm', md: 'md' }}
-                px={{ base: 2, md: 4 }}
+                fontSize="sm"
+                px={3}
             >
-                Back to Homepage
+                Homepage
             </Button>
 
             <Button
@@ -146,13 +146,13 @@ const SolanaWallet: React.FC = () => {
                 colorScheme="teal"
                 variant="solid"
                 position="absolute"
-                top={{ base: 4, md: 4 }}
-                right={{ base: 4, md: 4 }}
+                top={4}
+                right={4}
                 zIndex={1}
-                fontSize={{ base: 'sm', md: 'md' }}
-                px={{ base: 2, md: 4 }}
+                fontSize="sm"
+                px={3}
             >
-                Want to send SOL? Click here
+                Transfer SOL
             </Button>
 
             <Button
@@ -160,11 +160,11 @@ const SolanaWallet: React.FC = () => {
                 colorScheme="red"
                 variant="solid"
                 position="absolute"
-                bottom={{ base: 4, md: 4 }}
-                right={{ base: 4, md: 4 }}
+                bottom={4}
+                right={4}
                 zIndex={1}
-                fontSize={{ base: 'sm', md: 'md' }}
-                px={{ base: 2, md: 4 }}
+                fontSize="sm"
+                px={3}
             >
                 Clear Data
             </Button>
