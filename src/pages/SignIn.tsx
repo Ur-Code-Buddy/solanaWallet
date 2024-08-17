@@ -53,7 +53,7 @@ const SignIn: React.FC = () => {
     return (
         <Box
             minH="100vh"
-            bgImage="url('https://images.pexels.com/photos/730564/pexels-photo-730564.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
+            bgImage="url('https://images.unsplash.com/photo-1639815188546-c43c240ff4df?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
             bgSize="cover"
             bgPosition="center"
             p={6}
