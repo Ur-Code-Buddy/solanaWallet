@@ -5,7 +5,6 @@ import Wallets from './pages/Wallets';
 import SendSolPage from './pages/SendMoney';
 import AnalyticsPage from './pages/AnalyticsPage'; // Your analytics dashboard page
 import { ChakraProvider } from '@chakra-ui/react';
-import { Analytics } from '@vercel/analytics/react';
 
 const App: React.FC = () => {
     return (
@@ -19,7 +18,6 @@ const App: React.FC = () => {
                     <Route path="*" element={<Navigate to="/wallets" />} />
                 </Routes>
             </Router>
-            <Analytics mode="production" />
         </ChakraProvider>
     );
 };
