@@ -19,7 +19,7 @@ const AnalyticsPage: React.FC = () => {
                 <Text color="gray.400" fontSize="lg">
                     Monitor your application’s performance and user interactions.
                 </Text>
-                <Box mt={8} w="full">
+                <Box mt={8} w="full" color={'white'} bg={'teal.400'} p={4} rounded={10}>
                     <Analytics />
                 </Box>
             </VStack>
