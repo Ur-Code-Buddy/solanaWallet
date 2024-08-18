@@ -1,19 +1,30 @@
+import React from 'react';
+import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 import { Analytics } from '@vercel/analytics/react';
- 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <head>
-        <title>analytics</title>
-      </head>
-      <body>
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  );
-}
+
+const AnalyticsPage: React.FC = () => {
+    return (
+        <Box
+            minH="100vh"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            bg="gray.900"
+            p={4}
+        >
+            <VStack spacing={6} align="center">
+                <Heading as="h1" size="2xl" color="teal.300">
+                    Analytics Dashboard
+                </Heading>
+                <Text color="gray.400" fontSize="lg">
+                    Monitor your application’s performance and user interactions.
+                </Text>
+
+                <Analytics />
+
+            </VStack>
+        </Box>
+    );
+};
+
+export default AnalyticsPage;
